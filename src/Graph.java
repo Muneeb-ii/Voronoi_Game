@@ -108,4 +108,31 @@ public class Graph {
             System.out.println("Graph constructor:: error reading file " + filename);
         } 
     }
+
+    /**
+     * Returns number of vertices in the graph.
+     * 
+     * @return the number of vertices in the graph
+     */
+    public int size(){
+        return vertices.size();
+    }
+
+    /**
+     * Returns the vertices in the graph.
+     * 
+     * @return the list of vertices in the graph
+     */
+    public ArrayList<Vertex> getVertices(){
+        return vertices;
+    }
+
+    /**
+     * Returns the list of edges in the graph.
+     * 
+     * @return the list of edges in the graph
+     */
+    public ArrayList<Edge> getEdges(){
+        return edges;
+    }
 }
