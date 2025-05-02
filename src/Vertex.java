@@ -35,4 +35,45 @@ public class Vertex {
         }
         return null;
     }
+
+    /**
+     * Adds an adjacent vertex to the list of adjacent vertices.
+     * 
+     * @param e the vertex to be added as adjacent
+     */
+    public void addEdge(Edge e) {
+        incidentEdges.add(e);
+    }
+
+    /**
+     * Removes an edge from the list of incident edges.
+     * 
+     * @param e the edge to be removed
+     * @return true if the edge was successfully removed, false otherwise
+     */
+    public boolean removeEdge(Edge e){
+        if (incidentEdges.contains(e)) {
+            incidentEdges.remove(e);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns the list of incident edges.
+     * 
+     * @return the list of incident edges
+     */
+    public ArrayList<Edge> incidentEdges() {
+        return incidentEdges;
+    }
+
+    /**
+     * Returns the list of adjacent vertices.
+     * 
+     * @return the list of adjacent vertices
+     */
+    public ArrayList<Vertex> adjacentVertices() {
+        return adjacentVertices;
+    }
 }
