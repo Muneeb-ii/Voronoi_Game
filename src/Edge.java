@@ -9,7 +9,7 @@ public class Edge {
 
     private Vertex v; // The other vertex of the edge
     private Vertex u; // The vertex of the edge
-    private int distance; // The distance between the two vertices
+    private double distance; // The distance between the two vertices
 
     /**
      * Constructor to initialize an edge with two vertices and a distance.
@@ -21,7 +21,7 @@ public class Edge {
     public Edge(Vertex u, Vertex v, double distance){
         this.u = u;
         this.v = v;
-        this.distance = (int) distance;
+        this.distance = distance;
     }
 
     /**
