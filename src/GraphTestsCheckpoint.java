@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 public class GraphTestsCheckpoint {
 
     public static double vertexTests() {
