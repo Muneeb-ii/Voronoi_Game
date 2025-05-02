@@ -29,7 +29,7 @@ public class Vertex {
      */
     public Edge getEdgeTo(Vertex v){
         for (Edge e : incidentEdges) {
-            if (e.other(v)) {
+            if (e.other(v) != null) {
                 return e;
             }
         }
