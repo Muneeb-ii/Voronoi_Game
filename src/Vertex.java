@@ -20,4 +20,19 @@ public class Vertex {
         this.adjacentVertices = new ArrayList<Vertex>();
         this.incidentEdges = new ArrayList<Edge>();
     }
+
+    /**
+     * Returns if the vertex is adjacent to another vertex.
+     * 
+     * @param v the vertex to check adjacency with
+     * @return true if the vertex is adjacent to the given vertex, false otherwise
+     */
+    public Edge getEdgeTo(Vertex v){
+        for (Edge e : incidentEdges) {
+            if (e.other(v)) {
+                return e;
+            }
+        }
+        return null;
+    }
 }
