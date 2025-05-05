@@ -188,4 +188,41 @@ public class Graph {
     public Vertex getVertex(int index){
         return vertices.get(index);
     }
+
+    /**
+     * Removes a vertex from the graph.
+     * 
+     * @param vertex the vertex to be removed
+     * @return true if the vertex was successfully removed, false otherwise
+     */
+    public boolean remove(Vertex vertex){
+        if (!vertices.contains(vertex)) {
+            return false;
+        }
+        // Remove the vertex from the incident edges of all its adjacent vertices
+        vertices.remove(vertex);
+        for (Edge e : edges) {
+            if (e.vertices()[0].equals(vertex) || e.vertices()[1].equals(vertex)) {
+                edges.remove(e);
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Removes an edge from the graph.
+     * 
+     * @param edge the edge to be removed
+     * @return true if the edge was successfully removed, false otherwise
+     */
+    public boolean remove(Edge edge){
+        if (!edges.contains(edge)) {
+            return false;
+        }
+        // Remove the edge from the incident edges of both vertices
+        edge.vertices()[0].removeEdge(edge);
+        edge.vertices()[1].removeEdge(edge);
+        edges.remove(edge);
+        return true;
+    }
 }
