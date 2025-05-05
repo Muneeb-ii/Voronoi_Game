@@ -7,6 +7,9 @@
 
 import java.util.ArrayList;
 import java.io.* ;
+import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Comparator;
 
 public class Graph {
     
@@ -224,5 +227,63 @@ public class Graph {
         edge.vertices()[1].removeEdge(edge);
         edges.remove(edge);
         return true;
+    }
+
+    /**
+     * Calculates the shortest distance from a source vertex to all other vertices in the graph using Dijkstra's algorithm.
+     * 
+     * @param source the source vertex
+     * @return a HashMap containing the shortest distances from the source vertex to all other vertices
+     */
+    public HashMap<Vertex, Double> distanceFrom(Vertex source){
+
+        // Initialize the distance map
+        HashMap<Vertex, Double> dist = new HashMap<>();
+        // Set the distance to the source vertex to 0 and all other vertices to infinity
+        for(Vertex v : vertices){
+            if(v==source){
+                dist.put(v, 0.0);
+            }
+            else{
+                dist.put(v, Double.MAX_VALUE);
+            }
+        }
+
+        // Create a priority queue to store vertices based on their distances
+        Comparator<Vertex> vertexComparator = new Comparator<>(){
+            @Override
+            public int compare(Vertex v, Vertex u){
+                return dist.get(v).compareTo(dist.get(u));
+            }
+
+        };
+
+        // Create a priority queue to store vertices based on their distances
+        PriorityQueue<Vertex> pq = new PriorityQueue<>(vertexComparator);
+
+        // Add all vertices to the priority queue
+        for(Vertex v: vertices){
+            pq.add(v);
+        }
+
+        // While the priority queue is not empty, process the vertices
+        while(!pq.isEmpty()){
+            Vertex u =pq.poll();
+
+            // For each incident edge of the vertex, update the distance to the other vertex
+            for(Edge e : u.incidentEdges()){
+                Vertex v = e.other(u);
+                Double alt = dist.get(u) + e.distance();
+
+                // If the new distance is less than the current distance, update it
+                // and re-add the vertex to the priority queue
+                if (alt<dist.get(v)){
+                    dist.put(v, alt);
+                    pq.remove(v);
+                    pq.add(v);
+                }
+            }
+        }
+        return dist;
     }
 }
