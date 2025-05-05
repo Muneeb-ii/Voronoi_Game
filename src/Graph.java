@@ -135,4 +135,57 @@ public class Graph {
     public ArrayList<Edge> getEdges(){
         return edges;
     }
+
+    /**
+     * Adds a vertex to the graph.
+     * 
+     * @return the newly added vertex
+     */
+    public Vertex addVertex(){
+        Vertex v = new Vertex();
+        vertices.add(v);
+        return v;
+    }
+
+    /**
+     * Adds an edge between two vertices with a specified distance.
+     * 
+     * @param u        the first vertex
+     * @param v        the second vertex
+     * @param distance the distance between the two vertices
+     * @return the newly added edge
+     */
+    public Edge addEdge(Vertex u, Vertex v, double distance){
+        Edge e = new Edge(u, v, distance);
+        u.addEdge(e);
+        v.addEdge(e);
+        edges.add(e);
+        return e;
+    }
+
+    /**
+     * Returns the edge between two vertices if it exists.
+     * 
+     * @param u the first vertex
+     * @param v the second vertex
+     * @return the edge between the two vertices, or null if no such edge exists
+     */
+    public Edge getEdge(Vertex u, Vertex v) {
+        for (Edge e : edges) {
+            if (e.vertices()[0].equals(u) && e.vertices()[1].equals(v) || e.vertices()[0].equals(v) && e.vertices()[1].equals(u)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the vertex at the specified index.
+     * 
+     * @param index the index of the vertex
+     * @return the vertex at the specified index
+     */
+    public Vertex getVertex(int index){
+        return vertices.get(index);
+    }
 }
