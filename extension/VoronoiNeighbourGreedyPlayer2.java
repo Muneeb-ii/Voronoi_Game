@@ -5,7 +5,7 @@
  * 
  */
 
- public class VoronoiNeighbourGreedyPlayer2 extends VoronoiPlayerAlgorithm{
+public class VoronoiNeighbourGreedyPlayer2 extends VoronoiPlayerAlgorithm{
 
     /**
      * Constructor for VoronoiNeighbourGreedyPlayer
@@ -20,10 +20,12 @@
      * Chooses the unclaimed vertex with the highest combined score, where the score for
      * a vertex v is defined as the sum of:
      *   1. The value of v itself.
-     *   2. The values of all adjacent vertices u for which there is no token yet and
-     *      the edge distance from v to u is at most 1.1.
+     *   2. The values of adjacent vertices u divided by the distance from v to u, for which:
+     *      - u does not have a token yet.
+     *      - The edge distance from v to u is at most 1.1.
+     *      - The distance from the opponent's token to u is greater than or equal to the distance from v to u.
      *
-     * This heuristic favors vertices that not only have high individual value but also
+     * This heuristic favors vertices that not only have high individual value but also 
      * are surrounded by valuable neighbors, aiming to maximize local control in the Voronoi game.
      *
      * @param playerIndex       the index of the current player 
