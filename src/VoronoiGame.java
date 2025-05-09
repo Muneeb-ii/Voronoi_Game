@@ -243,7 +243,7 @@ public class VoronoiGame {
                     else
                         ties++;
                 }
-                System.out.print("\r" + (game * 10 + 10) + "% done testing");
+                System.out.print("\r" + (game + 1) * 100 / games + "% done testing");
             }
             System.out.println();
 
